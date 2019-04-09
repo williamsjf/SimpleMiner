@@ -1,0 +1,53 @@
+﻿using System;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace SimpleMiner.Navigation.Http
+{
+    public class HttpNavigator : IHttpNavigator
+    {
+        private readonly HttpClient Client;
+
+        public HttpNavigator(HttpClient httpClient)
+        {
+            Client = httpClient;
+        }
+
+        public async Task<HttpResponse<string>> GetAsync(string url)
+        {
+            return await GetAsync<string>(url);
+        }
+
+        public async Task<HttpResponse<TContent>> GetAsync<TContent>(string url)
+        {
+            var requestMessage = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+
+            return await ExecuteRequest<TContent>(requestMessage);
+        }
+
+        public async Task<HttpResponse<TContent>> ExecuteRequest<TContent>(HttpRequestMessage httpRequestMessage)
+        {
+            var httpResponse = new HttpResponse<TContent>();
+            try
+            {
+                var httpResponseMessage = await Client.SendAsync(httpRequestMessage);
+
+                httpResponse.Status = httpResponseMessage.StatusCode;
+                httpResponse.Content = (TContent)await httpResponseMessage.Content.ReadHttpContentAsync<TContent>();
+                httpResponse.Message = httpResponseMessage.ReasonPhrase;
+            }
+            catch (Exception e)
+            {
+                httpResponse.Message = e.ToString();
+                httpResponse.Status = HttpStatusCode.BadRequest;
+            }
+
+            return httpResponse;
+        }
+    }
+}
