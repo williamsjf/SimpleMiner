@@ -14,8 +14,11 @@ public static class MinerConfigurationExtensions
 
         services.AddHttpClient<INavigator, HttpNavigator>(client =>
         {
-            client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3");
+            client.DefaultRequestHeaders.Add("Accept", "text/html,application/xhtml+xml,application/xml");
+            client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
+            client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0");
             client.DefaultRequestHeaders.Add("User-Agent", "HttpClientFactoryTesting");
+            client.DefaultRequestHeaders.Add("Accept-Charset", "ISO-8859-1");
         })
         .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10)))
         .AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, (sleep) => TimeSpan.FromSeconds(5)));

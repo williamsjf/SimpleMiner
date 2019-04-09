@@ -22,7 +22,19 @@ namespace SimpleMiner.ApiTests.Controllers
         public async Task<IActionResult> Get()
         {
             var result = await _minerService.UseHttpNavigator()
-                .GetAsync("http://www.tjrj.jus.br/");
+                .GetAsync("https://www3.tjrj.jus.br/segweb/faces/login.jsp?indGet=true&SIGLASISTEMA=PORTALSERV");
+
+            // 37661264749
+            // 12345678
+
+            // _id5 - https://www3.tjrj.jus.br/autenticacaoPKI/autenticacaopki
+            // _noJavaScript - false
+            // org.apache.myfaces.trinidad.faces.FORM - formLogin
+            // org.apache.myfaces.trinidad.faces.STATE - !h7qxn8r7h
+            // source - btnEnviar
+            // txtLogin - 37661264749
+            // txtSenha - 12345678
+
 
             return Ok(result.Content);
         }
