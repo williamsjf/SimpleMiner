@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMiner", "SimpleMiner\SimpleMiner.csproj", "{351B1C2F-08F8-4ED5-8AAB-C371F6782038}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMiner", "SimpleMiner\SimpleMiner.csproj", "{351B1C2F-08F8-4ED5-8AAB-C371F6782038}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMiner.Tests", "SimpleMiner.Tests\SimpleMiner.Tests.csproj", "{D340CF3C-1DDD-4D6F-959A-FFC60ADAFDDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMiner.ApiTests", "SimpleMiner.ApiTests\SimpleMiner.ApiTests.csproj", "{EE3DD042-CA9C-441B-8CF9-25B850CD48F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{351B1C2F-08F8-4ED5-8AAB-C371F6782038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{351B1C2F-08F8-4ED5-8AAB-C371F6782038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{351B1C2F-08F8-4ED5-8AAB-C371F6782038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D340CF3C-1DDD-4D6F-959A-FFC60ADAFDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D340CF3C-1DDD-4D6F-959A-FFC60ADAFDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D340CF3C-1DDD-4D6F-959A-FFC60ADAFDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D340CF3C-1DDD-4D6F-959A-FFC60ADAFDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE3DD042-CA9C-441B-8CF9-25B850CD48F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3DD042-CA9C-441B-8CF9-25B850CD48F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3DD042-CA9C-441B-8CF9-25B850CD48F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3DD042-CA9C-441B-8CF9-25B850CD48F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
