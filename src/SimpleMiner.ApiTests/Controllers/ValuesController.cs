@@ -21,22 +21,39 @@ namespace SimpleMiner.ApiTests.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _minerService.UseHttpNavigator()
+            var navigator = _minerService
+                .UseHttpNavigator();
+
+            var httpResponse = await navigator
                 .GetAsync("https://www3.tjrj.jus.br/segweb/faces/login.jsp?indGet=true&SIGLASISTEMA=PORTALSERV");
 
-            // 37661264749
-            // 12345678
+            var parameters = new Dictionary<string, string>
+            {
+                { "_id5", "https://www3.tjrj.jus.br/autenticacaoPKI/autenticacaopki" },
+                { "_noJavaScript", "false" },
+                { "org.apache.myfaces.trinidad.faces.FORM", "formLogin" },
+                { "org.apache.myfaces.trinidad.faces.STATE", "!-9fowmj7le" },
+                { "source", "btnEnviar" },
+                { "txtLogin", "37661264749" },
+                { "txtSenha", "12345678" },
+            };
 
-            // _id5 - https://www3.tjrj.jus.br/autenticacaoPKI/autenticacaopki
-            // _noJavaScript - false
-            // org.apache.myfaces.trinidad.faces.FORM - formLogin
-            // org.apache.myfaces.trinidad.faces.STATE - !h7qxn8r7h
-            // source - btnEnviar
-            // txtLogin - 37661264749
-            // txtSenha - 12345678
+            httpResponse = await navigator
+                .PostAsync<string>("https://www3.tjrj.jus.br/segweb/faces/login.jsp", parameters);
 
+            httpResponse = await navigator
+                .GetAsync("http://www4.tjrj.jus.br/portalDeServicos/processoeletronico");
 
-            return Ok(result.Content);
+            httpResponse = await navigator.GetAsync("http://www4.tjrj.jus.br/portalDeServicos/jsp/portal/redirPortalNovaJanela.jsp");
+
+            var dic = new Dictionary<string, string>
+            {
+                { "node", "xnode-21" }
+            };
+
+            httpResponse = await navigator.PostAsync<string>("http://www4.tjrj.jus.br/portalDeServicos/treejson", dic);
+
+            return Ok(httpResponse.Content);
         }
 
         // GET api/values/5

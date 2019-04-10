@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace SimpleMiner.Navigation.Http
@@ -48,6 +50,20 @@ namespace SimpleMiner.Navigation.Http
             }
 
             return httpResponse;
+        }
+
+        public Task<HttpResponse<TContent>> PostAsync<TContent>(string url, Dictionary<string, string> parameters)
+        {
+            var encodedContent = new FormUrlEncodedContent(parameters);
+
+            var requestMessage = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url),
+                Content = encodedContent,
+            };
+
+            return ExecuteRequest<TContent>(requestMessage);
         }
     }
 }

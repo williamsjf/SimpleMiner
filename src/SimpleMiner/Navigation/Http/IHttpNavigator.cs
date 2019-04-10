@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SimpleMiner.Navigation.Http
 {
@@ -6,5 +7,6 @@ namespace SimpleMiner.Navigation.Http
     {
         Task<HttpResponse<string>> GetAsync(string url);
         Task<HttpResponse<TContent>> GetAsync<TContent>(string url);
+        Task<HttpResponse<TContent>> PostAsync<TContent>(string url, Dictionary<string, string> parameters);
     }
 }
