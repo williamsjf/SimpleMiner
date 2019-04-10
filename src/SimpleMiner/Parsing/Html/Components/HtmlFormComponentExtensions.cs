@@ -12,6 +12,11 @@ namespace SimpleMiner
             return null;
         }
 
+        public static IEnumerable<HtmlFormComponent> GetForms(this IHtmlParser htmlParser, ParseBy parseBy)
+        {
+            return null;
+        }
+
         public static IEnumerable<HtmlFormComponent> GetFormsById(this IHtmlParser htmlParser, string formName)
         {
             return null;

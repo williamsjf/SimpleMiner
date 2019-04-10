@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SimpleMiner.Navigation.Http;
 using SimpleMiner.Parsing.Html;
 using SimpleMiner.Service;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SimpleMiner.ApiTests.Controllers
 {
@@ -32,7 +30,7 @@ namespace SimpleMiner.ApiTests.Controllers
             var parser = _minerService
                 .UseParser<IHtmlParser>(httpResponse.Content);
 
-            var forms = parser.GetFormsById("");
+            var forms = parser.GetForms(ParseBy.Id("formLogin"));
 
             var parameters = new Dictionary<string, string>
             {
