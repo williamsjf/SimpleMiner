@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SimpleMiner.Navigation.Http;
+using SimpleMiner.Parsing.Html;
 using SimpleMiner.Service;
 
 namespace SimpleMiner.ApiTests.Controllers
@@ -22,10 +24,15 @@ namespace SimpleMiner.ApiTests.Controllers
         public async Task<IActionResult> Get()
         {
             var navigator = _minerService
-                .UseHttpNavigator();
+                .UseNavigator<IHttpNavigator>();
 
             var httpResponse = await navigator
                 .GetAsync("https://www3.tjrj.jus.br/segweb/faces/login.jsp?indGet=true&SIGLASISTEMA=PORTALSERV");
+
+            var parser = _minerService
+                .UseParser<IHtmlParser>(httpResponse.Content);
+
+            var forms = parser.GetFormsById("");
 
             var parameters = new Dictionary<string, string>
             {

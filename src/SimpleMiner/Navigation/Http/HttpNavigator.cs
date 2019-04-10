@@ -1,8 +1,8 @@
-﻿using System;
+﻿using SimpleMiner.Parsing.Html.Components;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace SimpleMiner.Navigation.Http
@@ -64,6 +64,11 @@ namespace SimpleMiner.Navigation.Http
             };
 
             return ExecuteRequest<TContent>(requestMessage);
+        }
+
+        public Task<HttpResponse<TContent>> SubmitForm<TContent>(HtmlFormComponent form)
+        {
+            throw new NotImplementedException();
         }
     }
 }

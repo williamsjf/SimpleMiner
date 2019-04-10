@@ -2,23 +2,18 @@
 using Polly;
 using SimpleMiner.Navigation;
 using SimpleMiner.Navigation.Http;
+using SimpleMiner.Parsing;
+using SimpleMiner.Parsing.Html;
 using SimpleMiner.Service;
 using System;
-using System.Net;
 using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 
 public static class MinerConfigurationExtensions
 {
     public static void UseSimpleMiner(this IServiceCollection services)
     {
         services.AddScoped<IMinerService, MinerService>();
-
-        var handler = new HttpClientHandler()
-        {
-            AllowAutoRedirect = false
-        };
+        services.AddScoped<IParser, HtmlParser>();
 
         services.AddHttpClient<INavigator, HttpNavigator>(client =>
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SimpleMiner.Parsing.Html.Components;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SimpleMiner.Navigation.Http
@@ -8,5 +9,6 @@ namespace SimpleMiner.Navigation.Http
         Task<HttpResponse<string>> GetAsync(string url);
         Task<HttpResponse<TContent>> GetAsync<TContent>(string url);
         Task<HttpResponse<TContent>> PostAsync<TContent>(string url, Dictionary<string, string> parameters);
+        Task<HttpResponse<TContent>> SubmitForm<TContent>(HtmlFormComponent form);
     }
 }
