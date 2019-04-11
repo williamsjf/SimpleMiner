@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Polly;
+using SimpleMiner;
 using SimpleMiner.Navigation;
 using SimpleMiner.Navigation.Http;
 using SimpleMiner.Parsing;
@@ -25,17 +26,24 @@ public static class MinerConfigurationExtensions
             client.DefaultRequestHeaders.Add("Upgrade-Insecure-Requests", "1");
             client.DefaultRequestHeaders.Add("Origin", "https://www3.tjrj.jus.br");
             client.DefaultRequestHeaders.Connection.Add("Keep-Alive");
+            client.BaseAddress = new Uri("https://www3.tjrj.jus.br");
         })
         .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
         {
-             AllowAutoRedirect = true,
+            AllowAutoRedirect = true,
         })
         .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(TimeSpan.FromSeconds(10)))
         .AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, (sleep) => TimeSpan.FromSeconds(5)));
     }
 
-    public static void ConfigureHttpNavigator()
+    public static void UseSimpleMinerHttpNavigator<THttpNavigator>(
+        this IServiceCollection serviceCollection,
+        Action<HttpNavigatorSettingsBuilder> action)
+        where THttpNavigator : class, IHttpNavigator
     {
+        HttpNavigatorSettingsBuilder builder = default(HttpNavigatorSettingsBuilder);
+        action(builder);
 
+        serviceCollection.AddHttpClient<IHttpNavigator, THttpNavigator>();
     }
 }

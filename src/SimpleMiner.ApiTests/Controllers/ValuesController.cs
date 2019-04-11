@@ -30,33 +30,27 @@ namespace SimpleMiner.ApiTests.Controllers
             var parser = _minerService
                 .UseParser<IHtmlParser>(httpResponse.Content);
 
-            var forms = parser.GetForms(ParseBy.Id("formLogin"));
-
-            var parameters = new Dictionary<string, string>
-            {
-                { "_id5", "https://www3.tjrj.jus.br/autenticacaoPKI/autenticacaopki" },
-                { "_noJavaScript", "false" },
-                { "org.apache.myfaces.trinidad.faces.FORM", "formLogin" },
-                { "org.apache.myfaces.trinidad.faces.STATE", "!-9fowmj7le" },
-                { "source", "btnEnviar" },
-                { "txtLogin", "37661264749" },
-                { "txtSenha", "12345678" },
-            };
+            var form = parser.GetForm(ParseBy.Id("formLogin"));
+            form.Values["txtLogin"] = "37661264749";
+            form.Values["txtSenha"] = "12345678";
+            form.Values["source"] = "btnEnviar";
 
             httpResponse = await navigator
-                .PostAsync<string>("https://www3.tjrj.jus.br/segweb/faces/login.jsp", parameters);
+                .SubmitForm(form);
 
             httpResponse = await navigator
                 .GetAsync("http://www4.tjrj.jus.br/portalDeServicos/processoeletronico");
 
-            httpResponse = await navigator.GetAsync("http://www4.tjrj.jus.br/portalDeServicos/jsp/portal/redirPortalNovaJanela.jsp");
+            httpResponse = await navigator
+                .GetAsync("http://www4.tjrj.jus.br/portalDeServicos/jsp/portal/redirPortalNovaJanela.jsp");
 
             var dic = new Dictionary<string, string>
             {
                 { "node", "xnode-21" }
             };
 
-            httpResponse = await navigator.PostAsync<string>("http://www4.tjrj.jus.br/portalDeServicos/treejson", dic);
+            httpResponse = await navigator
+                .PostAsync<string>("http://www4.tjrj.jus.br/portalDeServicos/treejson", dic);
 
             return Ok(httpResponse.Content);
         }

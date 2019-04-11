@@ -10,5 +10,6 @@ namespace SimpleMiner.Navigation.Http
         Task<HttpResponse<TContent>> GetAsync<TContent>(string url);
         Task<HttpResponse<TContent>> PostAsync<TContent>(string url, Dictionary<string, string> parameters);
         Task<HttpResponse<TContent>> SubmitForm<TContent>(HtmlFormComponent form);
+        Task<HttpResponse<string>> SubmitForm(HtmlFormComponent form);
     }
 }

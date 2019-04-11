@@ -59,16 +59,26 @@ namespace SimpleMiner.Navigation.Http
             var requestMessage = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri(url),
+                RequestUri = new Uri(url,UriKind.RelativeOrAbsolute),
                 Content = encodedContent,
             };
 
             return ExecuteRequest<TContent>(requestMessage);
         }
 
-        public Task<HttpResponse<TContent>> SubmitForm<TContent>(HtmlFormComponent form)
+        public async Task<HttpResponse<TContent>> SubmitForm<TContent>(HtmlFormComponent form)
         {
-            throw new NotImplementedException();
+            if (form.Method.Equals("GET"))
+            {
+                return await GetAsync<TContent>(null);
+            }
+
+            return await PostAsync<TContent>(form.Action, form.Values);
+        }
+
+        public async Task<HttpResponse<string>> SubmitForm(HtmlFormComponent form)
+        {
+            return await SubmitForm<string>(form);
         }
     }
 }

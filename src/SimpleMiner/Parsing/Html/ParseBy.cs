@@ -2,27 +2,23 @@
 {
     public class ParseBy
     {
-        public static ParseTag Tag { get; private set; }
+        public ParseBy(string tagName, string tagValue)
+        {
+            TagName = tagName;
+            TagValue = tagValue;
+        }
+
+        public readonly string TagName;
+        public readonly string TagValue;
 
         public static ParseBy Id(string value)
         {
-            TagDefinition("Id", value);
-            return new ParseBy();
+            return TagDefinition("Id", value);
         }
 
-        private static void TagDefinition(string tagName, string tagValue)
+        private static ParseBy TagDefinition(string tagName, string tagValue)
         {
-            Tag = new ParseTag
-            {
-                 TagName = tagName,
-                 TagValue = tagValue
-            };
+            return new ParseBy(tagName, tagValue);
         }
-    }
-
-    public struct ParseTag
-    {
-        public string TagName { get; set; }
-        public string TagValue { get; set; }
     }
 }
