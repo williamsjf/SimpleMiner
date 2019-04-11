@@ -2,23 +2,28 @@
 {
     public class ParseBy
     {
-        public ParseBy(string tagName, string tagValue)
+        public ParseBy(ParseByType parseByType, string value)
         {
-            TagName = tagName;
-            TagValue = tagValue;
+            ParseByType = parseByType;
+            Value = value;
         }
 
-        public readonly string TagName;
-        public readonly string TagValue;
+        public readonly ParseByType ParseByType;
+        public readonly string Value;
 
         public static ParseBy Id(string value)
         {
-            return TagDefinition("Id", value);
+            return TagDefinition(ParseByType.Id, value);
         }
 
-        private static ParseBy TagDefinition(string tagName, string tagValue)
+        public static ParseBy Xpath(string value)
         {
-            return new ParseBy(tagName, tagValue);
+            return TagDefinition(ParseByType.Xpath, value);
+        }
+
+        private static ParseBy TagDefinition(ParseByType parseByType, string value)
+        {
+            return new ParseBy(parseByType, value);
         }
     }
 }

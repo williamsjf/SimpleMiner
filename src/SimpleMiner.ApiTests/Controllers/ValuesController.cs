@@ -2,6 +2,7 @@
 using SimpleMiner.Navigation.Http;
 using SimpleMiner.Parsing.Html;
 using SimpleMiner.Service;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -28,7 +29,7 @@ namespace SimpleMiner.ApiTests.Controllers
                 .GetAsync("https://www3.tjrj.jus.br/segweb/faces/login.jsp?indGet=true&SIGLASISTEMA=PORTALSERV");
 
             var parser = _minerService
-                .UseParser<IHtmlParser>(httpResponse.Content);
+                .UseParser<HtmlParser>(httpResponse.Content);
 
             var form = parser.GetForm(ParseBy.Id("formLogin"));
             form.Values["txtLogin"] = "37661264749";

@@ -8,6 +8,6 @@ namespace SimpleMiner.Service
     {
         TNavigator UseNavigator<TNavigator>() where TNavigator : INavigator;
 
-        TParser UseParser<TParser>(object content) where TParser : IParser;
+        TParser UseParser<TParser>(object content) where TParser : IParser, new();
     }
 }

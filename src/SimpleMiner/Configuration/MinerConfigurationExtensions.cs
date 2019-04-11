@@ -14,7 +14,6 @@ public static class MinerConfigurationExtensions
     public static void UseSimpleMiner(this IServiceCollection services)
     {
         services.AddScoped<IMinerService, MinerService>();
-        services.AddScoped<IParser, HtmlParser>();
 
         services.AddHttpClient<INavigator, HttpNavigator>(client =>
         {

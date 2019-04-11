@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using SimpleMiner.Extensions;
 using SimpleMiner.Parsing.Html;
 using SimpleMiner.Parsing.Html.Components;
 using System.Collections.Generic;
@@ -10,12 +11,12 @@ namespace SimpleMiner
     {
         public static IList<HtmlFormComponent> GetForms(this IHtmlParser htmlParser, ParseBy parseBy)
         {
-            return GetForms(htmlParser.Html, parseBy.TagValue, parseBy.TagName);
+            return GetForms(htmlParser.Html, parseBy.Value, parseBy.ParseByType.GetDescription());
         }
 
         public static HtmlFormComponent GetForm(this IHtmlParser htmlParser, ParseBy parseBy)
         {
-            return GetForms(htmlParser.Html, parseBy.TagValue, parseBy.TagName)
+            return GetForms(htmlParser.Html, parseBy.Value, parseBy.ParseByType.GetDescription())
                 .FirstOrDefault();
         }
 
