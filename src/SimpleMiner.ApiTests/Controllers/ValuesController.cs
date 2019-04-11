@@ -2,9 +2,9 @@
 using SimpleMiner.Navigation.Http;
 using SimpleMiner.Parsing.Html;
 using SimpleMiner.Service;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SimpleMiner;
 
 namespace SimpleMiner.ApiTests.Controllers
 {
@@ -30,6 +30,11 @@ namespace SimpleMiner.ApiTests.Controllers
 
             var parser = _minerService
                 .UseParser<HtmlParser>(httpResponse.Content);
+
+            var nodeCollection = parser
+                .FromNodeCollection(ParseBy.Xpath("//table/tbody"))
+                .ForEachSingleNode(ParseBy.Xpath("./tr"))
+                .ParseInnerTextCollection();
 
             var form = parser.GetForm(ParseBy.Id("formLogin"));
             form.Values["txtLogin"] = "37661264749";

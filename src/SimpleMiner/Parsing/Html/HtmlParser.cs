@@ -10,15 +10,17 @@ namespace SimpleMiner.Parsing.Html
         public void LoadContent(object content)
         {
             if (!(content is string))
+            {
                 throw new UnsupportedContentException(
                     $"The content type '{content.GetType().Name}' is not supported for the HtmlParser.");
+            }
 
             Html = content.ToString();
         }
 
         public HtmlNodeCollectionResult FromNodeCollection(ParseBy parseBy)
         {
-            return null;
+            return HtmlResultExtensions.ExtractNodeCollection(Html, parseBy);
         }
     }
 }
