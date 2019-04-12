@@ -35,7 +35,7 @@ public static class MinerConfigurationExtensions
         .AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, (sleep) => TimeSpan.FromSeconds(5)));
     }
 
-    public static void UseSimpleMinerHttpNavigator<THttpNavigator>(
+    public static IHttpClientBuilder UseSimpleMinerHttpNavigator<THttpNavigator>(
         this IServiceCollection serviceCollection,
         Action<HttpNavigatorSettingsBuilder> action)
         where THttpNavigator : class, IHttpNavigator
@@ -43,6 +43,6 @@ public static class MinerConfigurationExtensions
         HttpNavigatorSettingsBuilder builder = default(HttpNavigatorSettingsBuilder);
         action(builder);
 
-        serviceCollection.AddHttpClient<IHttpNavigator, THttpNavigator>();
+       return serviceCollection.AddHttpClient<IHttpNavigator, THttpNavigator>();
     }
 }

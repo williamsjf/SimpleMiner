@@ -50,13 +50,13 @@ namespace SimpleMiner.ApiTests.Controllers
             httpResponse = await navigator
                 .GetAsync("http://www4.tjrj.jus.br/portalDeServicos/jsp/portal/redirPortalNovaJanela.jsp");
 
-            var dic = new Dictionary<string, string>
+            var parameters = new Dictionary<string, string>
             {
                 { "node", "xnode-21" }
             };
 
             httpResponse = await navigator
-                .PostAsync<string>("http://www4.tjrj.jus.br/portalDeServicos/treejson", dic);
+                .PostAsync<string>("http://www4.tjrj.jus.br/portalDeServicos/treejson", parameters);
 
             return Ok(httpResponse.Content);
         }
