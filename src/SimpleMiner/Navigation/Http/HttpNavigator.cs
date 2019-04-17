@@ -70,7 +70,7 @@ namespace SimpleMiner.Navigation.Http
         {
             if (form.Method.Equals("GET"))
             {
-                return await GetAsync<TContent>(null);
+                throw new NotImplementedException();
             }
 
             return await PostAsync<TContent>(form.Action, form.Values);
