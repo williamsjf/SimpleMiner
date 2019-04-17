@@ -23,9 +23,9 @@ namespace SimpleMiner.ApiTests
 
             services.UseSimpleMiner();
 
-            services.UseSimpleMinerHttpNavigator<HttpNavigator>(builder => 
+            services.UseSimpleMinerHttpNavigator<HttpNavigator>(builder =>
             {
-                builder.NavigationTimeOut(0); 
+                builder.NavigationTimeOut(0);
             });
         }
 
