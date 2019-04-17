@@ -9,6 +9,8 @@ namespace SimpleMiner.Navigation.Http
         {
             if (typeof(TContent) == typeof(string))
                 return await httpContent.ReadAsStringAsync();
+            if (typeof(TContent) == typeof(byte[]))
+                return await httpContent.ReadAsByteArrayAsync();
             else
                 return await httpContent.ReadAsAsync<TContent>();
         }

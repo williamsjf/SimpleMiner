@@ -40,7 +40,7 @@ namespace SimpleMiner.Navigation.Http
                 var httpResponseMessage = await Client.SendAsync(httpRequestMessage);
 
                 httpResponse.Status = httpResponseMessage.StatusCode;
-                httpResponse.Content = (TContent)await httpResponseMessage.Content.ReadHttpContentAsync<TContent>();
+                httpResponse.SetValue((TContent)await httpResponseMessage.Content.ReadHttpContentAsync<TContent>());
                 httpResponse.Message = httpResponseMessage.ReasonPhrase;
             }
             catch (Exception e)
@@ -59,7 +59,7 @@ namespace SimpleMiner.Navigation.Http
             var requestMessage = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri(url,UriKind.RelativeOrAbsolute),
+                RequestUri = new Uri(url, UriKind.RelativeOrAbsolute),
                 Content = encodedContent,
             };
 
@@ -79,6 +79,18 @@ namespace SimpleMiner.Navigation.Http
         public async Task<HttpResponse<string>> SubmitForm(HtmlFormComponent form)
         {
             return await SubmitForm<string>(form);
+        }
+
+        public async Task<Base64FileResponse> DownloadFile(string url)
+        {
+            var requestMessage = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+
+            var response = await ExecuteRequest<byte[]>(requestMessage);
+            return new Base64FileResponse(response);
         }
     }
 }

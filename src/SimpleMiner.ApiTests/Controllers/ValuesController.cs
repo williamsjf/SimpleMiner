@@ -5,6 +5,7 @@ using SimpleMiner.Service;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SimpleMiner;
+using System.IO;
 
 namespace SimpleMiner.ApiTests.Controllers
 {
@@ -24,6 +25,13 @@ namespace SimpleMiner.ApiTests.Controllers
         {
             var navigator = _minerService
                 .UseNavigator<IHttpNavigator>();
+
+            var pdfResponse = await navigator.DownloadFile(
+                "http://sd.blackball.lv/library/NET_Domain-Driven_Design_with_CSharp_-_Problem-Design-Solution.pdf");
+
+            return Ok(pdfResponse);
+
+           System.IO.File.WriteAllText("conteudo.pdf", pdfResponse.Content);
 
             var httpResponse = await navigator
                 .GetAsync("https://www3.tjrj.jus.br/segweb/faces/login.jsp?indGet=true&SIGLASISTEMA=PORTALSERV");

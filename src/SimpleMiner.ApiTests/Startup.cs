@@ -23,10 +23,10 @@ namespace SimpleMiner.ApiTests
 
             services.UseSimpleMiner();
 
-            services.UseSimpleMinerHttpNavigator<HttpNavigator>(builder =>
-            {
-                builder.NavigationTimeOut(0);
-            });
+            //services.UseSimpleMinerHttpNavigator<HttpNavigator>(builder =>
+            //{
+            //    builder.NavigationTimeOut(0);
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
