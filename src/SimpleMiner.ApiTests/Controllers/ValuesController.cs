@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SimpleMiner;
 using System.IO;
+using System;
 
 namespace SimpleMiner.ApiTests.Controllers
 {
@@ -28,6 +29,8 @@ namespace SimpleMiner.ApiTests.Controllers
 
             var pdfResponse = await navigator.DownloadFile(
                 "http://sd.blackball.lv/library/NET_Domain-Driven_Design_with_CSharp_-_Problem-Design-Solution.pdf");
+
+           System.IO.File.WriteAllBytes(@"arquivo.pdf", Convert.FromBase64String(pdfResponse.Content));
 
             return Ok(pdfResponse);
 
