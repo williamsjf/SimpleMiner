@@ -10,8 +10,9 @@
     <Description>A simple and powerful .NET standard library for web scraping.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags>Web, Crawler, .net, Crawling, Data, Extract, Miner, Robo</PackageTags>
-    <Version>1.0.5</Version>
-    <AssemblyVersion>1.0.55.0</AssemblyVersion>
+    <Version>1.0.6</Version>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <FileVersion>1.0.6.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
