@@ -2,6 +2,6 @@
 {
     public interface IParser
     {
-        void LoadContent(object content);
+       void Load(object content);
     }
 }

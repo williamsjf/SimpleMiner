@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using SimpleMiner.Parsing.Html.Results;
+using System;
+using System.Collections.Generic;
 
 namespace SimpleMiner.Parsing.Html.Components
 {
-    public class HtmlFormComponent
+    public class HtmlFormComponent : HtmlParseResult, IComponent
     {
         public HtmlFormComponent()
         {
@@ -21,6 +23,14 @@ namespace SimpleMiner.Parsing.Html.Components
         public string Method { get; set; }
 
         public List<HtmlFormValues> SelectValues { get; set; }
+
+        public HtmlFormComponent Clone()
+        {
+            var instance = new HtmlFormComponent();
+            instance = (HtmlFormComponent)this.MemberwiseClone();
+
+            return instance;
+        }
     }
 
     public class HtmlFormValues

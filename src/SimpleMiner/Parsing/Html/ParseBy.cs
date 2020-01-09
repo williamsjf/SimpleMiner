@@ -1,27 +1,31 @@
-﻿namespace SimpleMiner.Parsing.Html
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SimpleMiner.Parsing.Html
 {
     public class ParseBy
     {
-        public ParseBy(ParseByType parseByType, string value)
+        public ParseBy(HtmlParseByType parseByType, string value)
         {
             ParseByType = parseByType;
             Value = value;
         }
 
-        public readonly ParseByType ParseByType;
+        public readonly HtmlParseByType ParseByType;
         public readonly string Value;
 
         public static ParseBy Id(string value)
         {
-            return TagDefinition(ParseByType.Id, value);
+            return TagDefinition(HtmlParseByType.Id, value);
         }
 
         public static ParseBy Xpath(string value)
         {
-            return TagDefinition(ParseByType.Xpath, value);
+            return TagDefinition(HtmlParseByType.Xpath, value);
         }
 
-        private static ParseBy TagDefinition(ParseByType parseByType, string value)
+        private static ParseBy TagDefinition(HtmlParseByType parseByType, string value)
         {
             return new ParseBy(parseByType, value);
         }

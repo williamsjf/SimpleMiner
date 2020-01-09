@@ -13,15 +13,13 @@ namespace SimpleMiner.Parsing.Html
             if (htmlNode == null)
                 return string.Empty;
 
-            string value = string.Empty;
-
             if (!string.IsNullOrEmpty(xpath))
                 htmlNode = htmlNode.SelectSingleNode(xpath);
 
             if (htmlNode == null)
                 return string.Empty;
 
-            value = RemoveSpaces(htmlNode.InnerText);
+            string value = RemoveSpaces(htmlNode.InnerText);
             if (string.IsNullOrEmpty(value))
                 return string.Empty;
 
@@ -42,6 +40,7 @@ namespace SimpleMiner.Parsing.Html
         public static string RemoveSpaces(string html, bool singleLine = false)
         {
             html = DecodeHtml(html);
+            string value = string.Empty;
             try
             {
                 if (!singleLine)
@@ -51,15 +50,28 @@ namespace SimpleMiner.Parsing.Html
                     foreach (var line in lines)
                         sb.AppendLine(Regex.Replace(line, @"\s*(<[^>]+>)\s*", "$1"));
 
-                    return sb.ToString().TrimEnd();
+                    value = sb.ToString();
                 }
 
-                return Regex.Replace(html, @"\s*(<[^>]+>)\s*", "$1");
+                value = Regex.Replace(html, @"\s*(<[^>]+>)\s*", "$1");
             }
             catch (Exception)
             {
                 return html;
             }
+
+            return value.Trim();
+        }
+
+        public static string BuildXPath(this ParseBy parseBy)
+        {
+            if (parseBy.ParseByType == HtmlParseByType.Class)
+                return $"//*[@class='{parseBy.Value}']";
+
+            if (parseBy.ParseByType == HtmlParseByType.Id)
+                return $"//*[@id='{parseBy.Value}']";
+
+            return parseBy.Value;
         }
     }
 }
