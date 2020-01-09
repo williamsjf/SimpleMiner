@@ -1,16 +1,13 @@
 ﻿using SimpleMiner.Comunication.Http;
-using SimpleMiner.Models;
 using SimpleMiner.Parsing;
 using System;
 
 namespace SimpleMiner.Miner
 {
-    public abstract class BaseSource<TInput, TOutput> where TInput : Input where TOutput : Output
+    public abstract class BaseSource
     {
         protected object HttpNavigator { get; private set; }
         protected object Parser { get; private set; }
-
-        public abstract TOutput GetData(TInput input);
 
         /// <summary>
         /// Cria uma nova ou reaproveita uma instancia já existente de um HttpNavigator.

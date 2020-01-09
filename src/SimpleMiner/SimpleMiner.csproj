@@ -3,13 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.0</Version>
+    <Version>1.1.2</Version>
     <Company>Assertiva</Company>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Comunication\Http\Drivers\" />
-    <Folder Include="Persistence\Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,10 +19,6 @@
     <PackageReference Include="System.Drawing.Common" Version="4.6.1" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.16" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
   </ItemGroup>
 
 </Project>
