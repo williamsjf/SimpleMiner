@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleMiner", "SimpleMiner\SimpleMiner.csproj", "{01BD34FF-10B1-4F1A-AE07-8BE6967582BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMiner.Demo", "SimpleMiner.Demo\SimpleMiner.Demo.csproj", "{E838EDAF-5813-48AA-9D67-5C84F2C41419}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{01BD34FF-10B1-4F1A-AE07-8BE6967582BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01BD34FF-10B1-4F1A-AE07-8BE6967582BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01BD34FF-10B1-4F1A-AE07-8BE6967582BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E838EDAF-5813-48AA-9D67-5C84F2C41419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E838EDAF-5813-48AA-9D67-5C84F2C41419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E838EDAF-5813-48AA-9D67-5C84F2C41419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E838EDAF-5813-48AA-9D67-5C84F2C41419}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
