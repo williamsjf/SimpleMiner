@@ -10,7 +10,8 @@ namespace SimpleMiner.Miner
         protected object Parser { get; private set; }
 
         /// <summary>
-        /// Cria uma nova ou reaproveita uma instancia já existente de um HttpNavigator.
+        /// Create a default instance of http navigator.
+        /// When an instance already exists, it is reused.
         /// </summary>
         /// <returns></returns>
         protected HttpNavigator UseHttpNavigator()
@@ -24,9 +25,9 @@ namespace SimpleMiner.Miner
         }
 
         /// <summary>
-        /// Retorna uma nova instancia do HttpNavigator com as configurações informadas.
+        /// Create a custom instance of http navigator.
         /// </summary>
-        /// <param name="action"></param>
+        /// <param name="action">Http navigator customization</param>
         /// <returns></returns>
         protected HttpNavigator UseHttpNavigator(Action<HttpNavigatorBuilder> action)
         {
@@ -38,6 +39,11 @@ namespace SimpleMiner.Miner
             return (HttpNavigator)HttpNavigator;
         }
 
+        /// <summary>
+        /// WARNING: THIS FEATURE IS NOT READY YET
+        /// </summary>
+        /// <param name="driverPath"></param>
+        /// <returns></returns>
         protected SeleniumHttpNavigator UseSeleniumHttpNavigator(string driverPath)
         {
             return new SeleniumHttpNavigator(driverPath);
